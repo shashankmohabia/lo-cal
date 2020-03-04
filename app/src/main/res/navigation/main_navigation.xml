@@ -21,11 +21,9 @@
         tools:layout="@layout/fragment_result" >
         <argument
             android:name="firstPersonName"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
         <argument
             android:name="secondPersonName"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
     </fragment>
 </navigation>
