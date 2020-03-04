@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import com.example.lo_cal.databinding.FragmentGameBinding
+import com.example.lo_cal.databinding.FragmentResultBinding
 
 /**
  * A simple [Fragment] subclass.
  */
 class ResultFragment : Fragment() {
 
-    lateinit var binding: FragmentGameBinding
+    lateinit var binding: FragmentResultBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
