@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.lo_cal.databinding.FragmentGameBinding
@@ -26,12 +27,16 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val action = GameFragmentDirections.actionGameFragmentToResultFragment(
-            binding.firstPersonName.text.toString(),
-            binding.secondPersonName.text.toString()
-        )
         binding.calculateButton.setOnClickListener {
-            view.findNavController().navigate(action)
+            if (binding.firstPersonName.text.toString() == "" || binding.secondPersonName.text.toString() == "") {
+                Toast.makeText(activity, "Can't calculate for one person", Toast.LENGTH_LONG).show()
+            } else {
+                val action = GameFragmentDirections.actionGameFragmentToResultFragment(
+                    binding.firstPersonName.text.toString(),
+                    binding.secondPersonName.text.toString()
+                )
+                view.findNavController().navigate(action)
+            }
         }
     }
 }
