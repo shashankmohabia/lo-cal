@@ -10,4 +10,9 @@
         android:name="com.example.lo_cal.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.lo_cal.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" />
 </navigation>
