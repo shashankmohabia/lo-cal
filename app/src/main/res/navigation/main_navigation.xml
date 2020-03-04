@@ -18,5 +18,14 @@
         android:id="@+id/resultFragment"
         android:name="com.example.lo_cal.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="firstPersonName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="secondPersonName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
