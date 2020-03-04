@@ -3,4 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_person_name_hint">First person\'s name</string>
+    <string name="second_person_name_hint">Second person\'s name</string>
+    <string name="calculate_button_content_description">calculate button</string>
 </resources>
