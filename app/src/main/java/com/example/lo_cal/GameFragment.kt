@@ -26,8 +26,12 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val action = GameFragmentDirections.actionGameFragmentToResultFragment(
+            binding.firstPersonName.text.toString(),
+            binding.secondPersonName.text.toString()
+        )
         binding.calculateButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_gameFragment_to_resultFragment)
+            view.findNavController().navigate(action)
         }
     }
 }
