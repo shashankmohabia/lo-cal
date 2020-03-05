@@ -1,4 +1,4 @@
-package com.example.lo_cal
+package com.example.lo_cal.UI.Result
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
-import com.example.lo_cal.databinding.FragmentGameBinding
+import com.example.lo_cal.R
+import com.example.lo_cal.ResultFragmentArgs
 import com.example.lo_cal.databinding.FragmentResultBinding
 
 /**
@@ -23,10 +23,12 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        args = ResultFragmentArgs.fromBundle(arguments!!)
+        args =
+            ResultFragmentArgs.fromBundle(arguments!!)
         Toast.makeText(activity, arguments.toString(), Toast.LENGTH_LONG).show()
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_result, container, false)
         return binding.root
     }
 

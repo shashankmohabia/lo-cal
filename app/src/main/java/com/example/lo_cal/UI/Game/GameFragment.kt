@@ -1,4 +1,4 @@
-package com.example.lo_cal
+package com.example.lo_cal.UI.Game
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.example.lo_cal.GameFragmentDirections
+import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentGameBinding
 
-/**
- * A simple [Fragment] subclass.
- */
 class GameFragment : Fragment() {
 
     lateinit var binding: FragmentGameBinding
@@ -21,7 +20,8 @@ class GameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_game, container, false)
         return binding.root
     }
 
@@ -31,10 +31,11 @@ class GameFragment : Fragment() {
             if (binding.firstPersonName.text.toString() == "" || binding.secondPersonName.text.toString() == "") {
                 Toast.makeText(activity, "Can't calculate for one person", Toast.LENGTH_LONG).show()
             } else {
-                val action = GameFragmentDirections.actionGameFragmentToResultFragment(
-                    binding.firstPersonName.text.toString(),
-                    binding.secondPersonName.text.toString()
-                )
+                val action =
+                    GameFragmentDirections.actionGameFragmentToResultFragment(
+                        binding.firstPersonName.text.toString(),
+                        binding.secondPersonName.text.toString()
+                    )
                 view.findNavController().navigate(action)
             }
         }

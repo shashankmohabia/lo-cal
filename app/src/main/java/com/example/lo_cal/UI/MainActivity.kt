@@ -1,7 +1,8 @@
-package com.example.lo_cal
+package com.example.lo_cal.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.lo_cal.R
 
 class MainActivity : AppCompatActivity() {
 
