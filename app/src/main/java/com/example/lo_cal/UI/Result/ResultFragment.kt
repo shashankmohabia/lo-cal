@@ -11,9 +11,6 @@ import com.example.lo_cal.R
 import com.example.lo_cal.ResultFragmentArgs
 import com.example.lo_cal.databinding.FragmentResultBinding
 
-/**
- * A simple [Fragment] subclass.
- */
 class ResultFragment : Fragment() {
 
     lateinit var binding: FragmentResultBinding
@@ -23,12 +20,13 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        args =
-            ResultFragmentArgs.fromBundle(arguments!!)
-        Toast.makeText(activity, arguments.toString(), Toast.LENGTH_LONG).show()
-
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_result, container, false)
+        args = ResultFragmentArgs.fromBundle(arguments!!)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_result,
+            container,
+            false
+        )
         return binding.root
     }
 
