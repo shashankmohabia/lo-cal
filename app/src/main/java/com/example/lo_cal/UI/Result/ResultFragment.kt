@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.lo_cal.R
-import com.example.lo_cal.ResultFragmentArgs
+import com.example.lo_cal.UI.Result.ResultFragmentArgs
 import com.example.lo_cal.databinding.FragmentResultBinding
 
 class ResultFragment : Fragment() {

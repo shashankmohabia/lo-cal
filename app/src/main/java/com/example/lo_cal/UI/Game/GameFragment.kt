@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.example.lo_cal.GameFragmentDirections
+import com.example.lo_cal.UI.Game.GameFragmentDirections
 import com.example.lo_cal.R
 import com.example.lo_cal.Utils.Extensions.toast
 import com.example.lo_cal.databinding.FragmentGameBinding
