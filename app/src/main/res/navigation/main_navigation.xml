@@ -27,7 +27,7 @@
             app:argType="string" />
         <argument
             android:name="result"
-            app:argType="integer"
+            app:argType="string"
             android:defaultValue="0" />
     </fragment>
 </navigation>

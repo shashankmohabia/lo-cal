@@ -32,11 +32,13 @@ class ResultFragment : Fragment() {
         )
 
         resultViewModelFactory =
-            ResultViewModelFactory(args.firstPersonName, args.secondPersonName, args.result)
+            ResultViewModelFactory(
+                args.firstPersonName,
+                args.secondPersonName,
+                args.result
+            )
         resultViewModel =
             ViewModelProvider(this, resultViewModelFactory).get(ResultViewModel::class.java)
-
-
         return binding.root
     }
 
