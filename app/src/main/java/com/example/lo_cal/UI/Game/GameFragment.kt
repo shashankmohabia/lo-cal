@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.lo_cal.UI.Game.GameFragmentDirections
 import com.example.lo_cal.R
@@ -14,7 +16,8 @@ import com.example.lo_cal.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
 
-    lateinit var binding: FragmentGameBinding
+    private lateinit var binding: FragmentGameBinding
+    private lateinit var viewModel: GameViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +27,9 @@ class GameFragment : Fragment() {
             inflater,
             R.layout.fragment_game, container, false
         )
+
+        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+
         return binding.root
     }
 
