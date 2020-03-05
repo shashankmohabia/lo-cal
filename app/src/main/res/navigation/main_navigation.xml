@@ -25,5 +25,9 @@
         <argument
             android:name="secondPersonName"
             app:argType="string" />
+        <argument
+            android:name="result"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>
