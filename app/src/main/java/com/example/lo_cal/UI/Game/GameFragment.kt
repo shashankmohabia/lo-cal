@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -18,6 +19,7 @@ class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentGameBinding
     private lateinit var viewModel: GameViewModel
+    private lateinit var result: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +32,10 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
+        viewModel.result.observe(viewLifecycleOwner, Observer {
+            result = viewModel.result.value.toString()
+        })
+
         return binding.root
     }
 
@@ -39,10 +45,12 @@ class GameFragment : Fragment() {
             if (binding.firstPersonName.text.toString() == "" || binding.secondPersonName.text.toString() == "") {
                 toast("Can't calculate for one person")
             } else {
+                viewModel.getResult()
                 val action =
                     GameFragmentDirections.actionGameFragmentToResultFragment(
                         binding.firstPersonName.text.toString(),
-                        binding.secondPersonName.text.toString()
+                        binding.secondPersonName.text.toString(),
+                        result
                     )
                 view.findNavController().navigate(action)
             }
