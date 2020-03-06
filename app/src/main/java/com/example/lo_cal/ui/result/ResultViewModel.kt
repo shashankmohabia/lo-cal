@@ -4,11 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ResultViewModel(firstName: String, secondName: String, result: String) : ViewModel() {
-
-    val firstName = firstName
-    val secondName = secondName
-    val result = result
+class ResultViewModel(val firstName: String, val secondName: String, val result: String) : ViewModel() {
 
     private val _calculateAgain = MutableLiveData<Boolean>()
     val calculateAgain: LiveData<Boolean>
