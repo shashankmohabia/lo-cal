@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.example.lo_cal.R
 import com.example.lo_cal.UI.Result.ResultFragmentArgs
 import com.example.lo_cal.databinding.FragmentResultBinding
@@ -31,21 +33,37 @@ class ResultFragment : Fragment() {
             false
         )
 
-        resultViewModelFactory =
-            ResultViewModelFactory(
-                args.firstPersonName,
-                args.secondPersonName,
-                args.result
-            )
+        resultViewModelFactory = ResultViewModelFactory(
+            args.firstPersonName,
+            args.secondPersonName,
+            args.result
+        )
+
         resultViewModel =
             ViewModelProvider(this, resultViewModelFactory).get(ResultViewModel::class.java)
+
+        setOnCLickListeners()
+        setObservers()
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.result.text = args.firstPersonName + args.result
-
+    private fun setObservers() {
+        resultViewModel.calculateAgain.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                navigateToGame()
+                resultViewModel.onCalculateAgainComplete()
+            }
+        })
     }
 
+    private fun navigateToGame() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_resultFragment_to_gameFragment)
+    }
+
+    private fun setOnCLickListeners() {
+        binding.calculateAgainButton.setOnClickListener {
+            resultViewModel.onCalculateAgain()
+        }
+    }
 }
