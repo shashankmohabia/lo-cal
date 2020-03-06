@@ -40,7 +40,7 @@ class ResultFragment : Fragment() {
         resultViewModel =
             ViewModelProvider(this, resultViewModelFactory).get(ResultViewModel::class.java)
 
-        setOnCLickListeners()
+        binding.resultViewModel = resultViewModel
         setObservers()
 
         return binding.root
@@ -57,11 +57,5 @@ class ResultFragment : Fragment() {
 
     private fun navigateToGame() {
         NavHostFragment.findNavController(this).navigate(R.id.action_resultFragment_to_gameFragment)
-    }
-
-    private fun setOnCLickListeners() {
-        binding.calculateAgainButton.setOnClickListener {
-            resultViewModel.onCalculateAgain()
-        }
     }
 }
