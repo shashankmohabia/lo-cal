@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.example.lo_cal.UI.Game.GameFragmentDirections
+import androidx.navigation.fragment.NavHostFragment
 import com.example.lo_cal.R
 import com.example.lo_cal.Utils.Extensions.toast
 import com.example.lo_cal.databinding.FragmentGameBinding
@@ -32,28 +31,45 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        viewModel.result.observe(viewLifecycleOwner, Observer {
-            result = viewModel.result.value.toString()
-        })
+        setObservers()
+        setOnClickListeners()
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.calculateButton.setOnClickListener {
-            if (binding.firstPersonName.text.toString() == "" || binding.secondPersonName.text.toString() == "") {
-                toast("Can't calculate for one person")
-            } else {
-                viewModel.getResult()
-                val action =
-                    GameFragmentDirections.actionGameFragmentToResultFragment(
-                        binding.firstPersonName.text.toString(),
-                        binding.secondPersonName.text.toString(),
-                        result
-                    )
-                view.findNavController().navigate(action)
+    private fun setObservers() {
+        viewModel.result.observe(viewLifecycleOwner, Observer {
+            result = viewModel.result.value.toString()
+        })
+
+        viewModel.isInputValid.observe(viewLifecycleOwner, Observer {
+            if (it == false) {
+                toast("Please enter both names")
+            } else if (it == true) {
+                navigateToResult()
             }
+        })
+    }
+
+    private fun setOnClickListeners() {
+        binding.calculateButton.setOnClickListener {
+            viewModel.calculate(
+                binding.firstPersonName.text.toString(),
+                binding.secondPersonName.text.toString()
+            )
         }
     }
+
+    private fun navigateToResult() {
+        val action =
+            GameFragmentDirections.actionGameFragmentToResultFragment(
+                binding.firstPersonName.text.toString(),
+                binding.secondPersonName.text.toString(),
+                result
+            )
+        NavHostFragment.findNavController(this).navigate(action)
+        viewModel.onCalculationComplete()
+    }
 }
+
+
