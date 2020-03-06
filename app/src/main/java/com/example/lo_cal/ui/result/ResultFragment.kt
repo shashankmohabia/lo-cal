@@ -41,6 +41,7 @@ class ResultFragment : Fragment() {
             ViewModelProvider(this, resultViewModelFactory).get(ResultViewModel::class.java)
 
         binding.resultViewModel = resultViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         setObservers()
 
         return binding.root
