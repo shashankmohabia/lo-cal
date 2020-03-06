@@ -1,9 +1,9 @@
-package com.example.lo_cal.UI.Launcher
+package com.example.lo_cal.ui.launcher
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.lo_cal.UI.MainActivity
+import com.example.lo_cal.ui.MainActivity
 
 class SplashScreen : AppCompatActivity() {
 

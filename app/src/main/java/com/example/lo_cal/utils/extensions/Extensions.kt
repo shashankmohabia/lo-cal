@@ -1,4 +1,4 @@
-package com.example.lo_cal.Utils.Extensions
+package com.example.lo_cal.utils.extensions
 
 import android.widget.Toast
 import androidx.fragment.app.Fragment

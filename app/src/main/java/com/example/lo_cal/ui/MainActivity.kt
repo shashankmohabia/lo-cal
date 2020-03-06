@@ -1,4 +1,4 @@
-package com.example.lo_cal.UI
+package com.example.lo_cal.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

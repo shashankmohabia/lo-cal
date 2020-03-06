@@ -1,4 +1,4 @@
-package com.example.lo_cal.UI.Result
+package com.example.lo_cal.ui.result
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

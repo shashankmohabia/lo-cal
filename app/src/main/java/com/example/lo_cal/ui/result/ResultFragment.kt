@@ -1,17 +1,15 @@
-package com.example.lo_cal.UI.Result
+package com.example.lo_cal.ui.result
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lo_cal.R
-import com.example.lo_cal.UI.Result.ResultFragmentArgs
 import com.example.lo_cal.databinding.FragmentResultBinding
 
 class ResultFragment : Fragment() {

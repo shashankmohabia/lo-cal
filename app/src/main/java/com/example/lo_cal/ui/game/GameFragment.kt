@@ -1,4 +1,4 @@
-package com.example.lo_cal.UI.Game
+package com.example.lo_cal.ui.game
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lo_cal.R
-import com.example.lo_cal.Utils.Extensions.toast
+import com.example.lo_cal.utils.extensions.toast
 import com.example.lo_cal.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {

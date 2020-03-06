@@ -1,4 +1,4 @@
-package com.example.lo_cal.UI.Result
+package com.example.lo_cal.ui.result
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +10,11 @@ class ResultViewModelFactory(
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(ResultViewModel::class.java)){
-            return ResultViewModel(firstName, secondName, result) as T
+            return ResultViewModel(
+                firstName,
+                secondName,
+                result
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

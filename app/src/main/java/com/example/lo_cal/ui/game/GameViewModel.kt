@@ -1,4 +1,4 @@
-package com.example.lo_cal.UI.Game
+package com.example.lo_cal.ui.game
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
