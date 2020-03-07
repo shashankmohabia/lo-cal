@@ -7,4 +7,5 @@
     <string name="second_person_name_hint">Second person\'s name</string>
     <string name="calculate_button_content_description">calculate button</string>
     <string name="calculate_again_button_text">Calculate Again</string>
+    <string name="result_statement">%s and %s has %s love between them</string>
 </resources>

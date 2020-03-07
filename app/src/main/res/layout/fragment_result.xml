@@ -21,7 +21,7 @@
             android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{resultViewModel.result}"
+            android:text="@{@string/result_statement(resultViewModel.firstName.toString(), resultViewModel.secondName.toString(), resultViewModel.result.toString())}"
             tools:text="result of the calculation" />
 
         <Button
