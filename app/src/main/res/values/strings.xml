@@ -8,4 +8,5 @@
     <string name="calculate_button_content_description">calculate button</string>
     <string name="calculate_again_button_text">Calculate Again</string>
     <string name="result_statement">%s and %s has %s love between them</string>
+    <string name="about_us_content">This fragment contains details about the app</string>
 </resources>
