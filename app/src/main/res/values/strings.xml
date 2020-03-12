@@ -12,4 +12,5 @@
     <string name="about_us_option_text">About Us</string>
     <string name="share_result_option_text">Share Result</string>
     <string name="rules_fragment_content">Here are the rules of the game</string>
+    <string name="rules_option_text">Game Rules</string>
 </resources>
