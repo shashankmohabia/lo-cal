@@ -1,10 +1,11 @@
-package com.example.lo_cal
+package com.example.lo_cal.ui.about
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.lo_cal.R
 
 /**
  * A simple [Fragment] subclass.
