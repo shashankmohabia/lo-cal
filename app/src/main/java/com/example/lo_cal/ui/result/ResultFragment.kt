@@ -1,14 +1,14 @@
 package com.example.lo_cal.ui.result
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentResultBinding
 
@@ -42,6 +42,8 @@ class ResultFragment : Fragment() {
 
         binding.resultViewModel = resultViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        setHasOptionsMenu(true)
         setObservers()
 
         return binding.root
@@ -58,5 +60,15 @@ class ResultFragment : Fragment() {
 
     private fun navigateToGame() {
         NavHostFragment.findNavController(this).navigate(R.id.action_resultFragment_to_gameFragment)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, view!!.findNavController())
+                || super.onOptionsItemSelected(item)
     }
 }

@@ -30,8 +30,6 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        setHasOptionsMenu(true)
-
         setObservers()
         setOnClickListeners()
 
@@ -70,16 +68,6 @@ class GameFragment : Fragment() {
             )
         NavHostFragment.findNavController(this).navigate(action)
         viewModel.onCalculationComplete()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.options_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, view!!.findNavController())
-                || super.onOptionsItemSelected(item)
     }
 }
 
