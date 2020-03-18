@@ -7,8 +7,8 @@ import com.example.lo_cal.utils.constants.DATABASE_TABLE_NAME
 
 @Entity(tableName = DATABASE_TABLE_NAME)
 data class LoCalEntry(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long,
+    @PrimaryKey
+    var id: String,
 
     @ColumnInfo(name = "first_name")
     var firstName: String,
@@ -20,5 +20,5 @@ data class LoCalEntry(
     var result: Int,
 
     @ColumnInfo(name = "record_time")
-    var record_time:Long = System.currentTimeMillis()
+    var record_time: Long = System.currentTimeMillis()
 )
