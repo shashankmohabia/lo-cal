@@ -11,3 +11,5 @@ fun Fragment.toast(message: String) {
 fun Fragment.longToast(message: String) {
     Toast.makeText(this.activity, message, Toast.LENGTH_LONG).show()
 }
+
+

@@ -13,4 +13,5 @@
     <string name="share_result_option_text">Share Result</string>
     <string name="rules_fragment_content">Here are the rules of the game</string>
     <string name="rules_option_text">Game Rules</string>
+    <string name="share_intent_text">Share Via</string>
 </resources>
