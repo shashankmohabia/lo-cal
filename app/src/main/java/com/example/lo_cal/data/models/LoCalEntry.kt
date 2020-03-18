@@ -17,5 +17,8 @@ data class LoCalEntry(
     var secondName: String,
 
     @ColumnInfo(name = "result")
-    var result: Int
+    var result: Int,
+
+    @ColumnInfo(name = "record_time")
+    var record_time:Long = System.currentTimeMillis()
 )
