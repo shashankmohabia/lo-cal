@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.example.lo_cal.R
 import com.example.lo_cal.utils.extensions.toast
 import com.example.lo_cal.databinding.FragmentGameBinding
@@ -30,8 +28,9 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
+        binding.gameViewModel = viewModel
+
         setObservers()
-        setOnClickListeners()
 
         return binding.root
     }
@@ -48,15 +47,6 @@ class GameFragment : Fragment() {
                 navigateToResult()
             }
         })
-    }
-
-    private fun setOnClickListeners() {
-        binding.calculateButton.setOnClickListener {
-            viewModel.calculate(
-                binding.firstPersonName.text.toString(),
-                binding.secondPersonName.text.toString()
-            )
-        }
     }
 
     private fun navigateToResult() {

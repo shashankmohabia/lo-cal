@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="gameViewModel"
+            type="com.example.lo_cal.ui.game.GameViewModel" />
+    </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -14,7 +19,8 @@
             android:id="@+id/first_person_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/first_person_name_hint" />
+            android:hint="@string/first_person_name_hint"
+            android:text="@={gameViewModel.firstName}" />
 
         <ImageButton
             android:id="@+id/calculate_button"
@@ -22,13 +28,15 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:contentDescription="@string/calculate_button_content_description"
+            android:onClick="@{()->gameViewModel.calculate()}"
             android:src="@drawable/love_button" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/second_person_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/second_person_name_hint" />
+            android:hint="@string/second_person_name_hint"
+            android:text="@={gameViewModel.secondName}" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
