@@ -11,7 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentResultBinding
-import com.example.lo_cal.utils.extensions.toast
+import com.example.lo_cal.utils.extensions.getTextShareIntent
 
 class ResultFragment : Fragment() {
 
@@ -70,7 +70,7 @@ class ResultFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.shareResult) {
-            toast("Share Result")
+            getTextShareIntent("text/plain", resultViewModel.result)
             return true
         }
         return NavigationUI.onNavDestinationSelected(item, view!!.findNavController())
@@ -78,3 +78,4 @@ class ResultFragment : Fragment() {
 
     }
 }
+
