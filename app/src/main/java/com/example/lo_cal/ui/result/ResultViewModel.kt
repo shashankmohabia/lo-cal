@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.lo_cal.data.models.LoCalEntry
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
 class ResultViewModel(val args: ResultFragmentArgs, val application: Application) : ViewModel() {
@@ -13,6 +16,8 @@ class ResultViewModel(val args: ResultFragmentArgs, val application: Application
         get() = _calculateAgain
 
     private var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
 
     init {
         _calculateAgain.value = false
