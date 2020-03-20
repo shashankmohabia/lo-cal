@@ -7,8 +7,8 @@ import com.example.lo_cal.utils.constants.DATABASE_TABLE_NAME
 
 @Entity(tableName = DATABASE_TABLE_NAME)
 data class LoCalEntry(
-    @PrimaryKey
-    var id: String,
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0L,
 
     @ColumnInfo(name = "first_name")
     var firstName: String,
@@ -23,7 +23,3 @@ data class LoCalEntry(
     var record_time: Long = System.currentTimeMillis()
 
 )
-
-fun getId(firstName: String, secondName: String): String {
-    return (listOf(firstName, secondName)).joinToString(separator = "_")
-}
