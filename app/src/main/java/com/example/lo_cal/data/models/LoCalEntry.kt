@@ -17,8 +17,13 @@ data class LoCalEntry(
     var secondName: String,
 
     @ColumnInfo(name = "result")
-    var result: Int,
+    var result: String,
 
     @ColumnInfo(name = "record_time")
     var record_time: Long = System.currentTimeMillis()
+
 )
+
+fun getId(firstName: String, secondName: String): String {
+    return (listOf(firstName, secondName)).joinToString(separator = "_")
+}

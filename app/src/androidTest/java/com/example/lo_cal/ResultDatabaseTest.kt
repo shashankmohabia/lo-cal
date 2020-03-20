@@ -42,7 +42,7 @@ class ResultDatabaseTest {
             id = "shashank_satya",
             firstName = "shashank",
             secondName = "satya",
-            result = 100
+            result = "100"
         )
         dao.insert(entry)
         val latestEntry = dao.getLatestEntry()
