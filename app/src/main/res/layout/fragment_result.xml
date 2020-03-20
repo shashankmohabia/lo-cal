@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="resultViewModel"
             type="com.example.lo_cal.ui.result.ResultViewModel" />
@@ -18,17 +17,29 @@
         tools:context=".ui.result.ResultFragment">
 
         <TextView
-            android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/result_statement(resultViewModel.currentEntry.firstName.toString(), resultViewModel.currentEntry.secondName.toString(), resultViewModel.currentEntry.result.toString())}"
             tools:text="result of the calculation" />
 
         <Button
-            android:id="@+id/calculate_again_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{()-> resultViewModel.onCalculateAgain()}"
             android:text="@string/calculate_again_button_text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> resultViewModel.cleanDB()}"
+            android:text="@string/clean_db_button_text" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{resultViewModel.entriesString}"
+            tools:text="data" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

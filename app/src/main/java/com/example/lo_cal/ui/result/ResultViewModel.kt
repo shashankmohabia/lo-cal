@@ -1,16 +1,13 @@
 package com.example.lo_cal.ui.result
 
 import android.app.Application
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.lo_cal.data.ResultDatabase
 import com.example.lo_cal.data.models.LoCalEntry
-import com.example.lo_cal.data.models.getId
 import kotlinx.coroutines.*
 
 class ResultViewModel(args: ResultFragmentArgs, application: Application) :
-    ViewModel() {
+    AndroidViewModel(application) {
 
     private val _calculateAgain = MutableLiveData<Boolean>()
     val calculateAgain: LiveData<Boolean>
@@ -21,17 +18,20 @@ class ResultViewModel(args: ResultFragmentArgs, application: Application) :
 
     private val database = ResultDatabase.getInstance(application)
 
+    private val entryList = database.dao.getAllEntries()
+    val entriesString = Transformations.map(entryList) {
+        it.toString()
+    }
+
     var currentEntry: LoCalEntry
 
     init {
         _calculateAgain.value = false
         currentEntry = LoCalEntry(
-            id = getId(args.firstPersonName, args.secondPersonName),
             firstName = args.firstPersonName,
             secondName = args.secondPersonName,
             result = args.result
         )
-
         updateDBWithNewEntry()
     }
 
@@ -44,6 +44,18 @@ class ResultViewModel(args: ResultFragmentArgs, application: Application) :
     private suspend fun insertInDB(newEntry: LoCalEntry) {
         withContext(Dispatchers.IO) {
             database.dao.insert(newEntry)
+        }
+    }
+
+    fun cleanDB() {
+        uiScope.launch {
+            clean()
+        }
+    }
+
+    private suspend fun clean() {
+        withContext(Dispatchers.IO) {
+            database.dao.clear()
         }
     }
 

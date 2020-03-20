@@ -12,7 +12,6 @@ import androidx.navigation.ui.NavigationUI
 import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentResultBinding
 import com.example.lo_cal.utils.extensions.getTextShareIntent
-import com.example.lo_cal.utils.extensions.toast
 
 class ResultFragment : Fragment() {
 
@@ -35,9 +34,7 @@ class ResultFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        resultViewModelFactory = ResultViewModelFactory(
-            args, application
-        )
+        resultViewModelFactory = ResultViewModelFactory(args, application)
 
         resultViewModel =
             ViewModelProvider(this, resultViewModelFactory).get(ResultViewModel::class.java)
