@@ -32,10 +32,10 @@ class ResultFragment : Fragment() {
             false
         )
 
+        val application = requireNotNull(this.activity).application
+
         resultViewModelFactory = ResultViewModelFactory(
-            args.firstPersonName,
-            args.secondPersonName,
-            args.result
+            args, application
         )
 
         resultViewModel =
@@ -70,7 +70,7 @@ class ResultFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.shareResult) {
-            getTextShareIntent("text/plain", resultViewModel.result)
+            getTextShareIntent("text/plain", resultViewModel.args.result)
             return true
         }
         return NavigationUI.onNavDestinationSelected(item, view!!.findNavController())

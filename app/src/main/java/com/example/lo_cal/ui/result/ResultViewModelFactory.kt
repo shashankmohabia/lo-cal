@@ -1,19 +1,18 @@
 package com.example.lo_cal.ui.result
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 class ResultViewModelFactory(
-    private val firstName: String,
-    private val secondName: String,
-    private val result: String
-) : ViewModelProvider.Factory {
+    private val args: ResultFragmentArgs,
+    private val application: Application
+    ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(ResultViewModel::class.java)){
+        if (modelClass.isAssignableFrom(ResultViewModel::class.java)) {
             return ResultViewModel(
-                firstName,
-                secondName,
-                result
+                args,
+                application
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
