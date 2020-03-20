@@ -18,7 +18,7 @@ interface DBDao {
     fun update(entry: LoCalEntry)
 
     @Query("SELECT * FROM $DATABASE_TABLE_NAME WHERE id = :key")
-    fun get(key: String): LoCalEntry
+    fun get(key: String): LoCalEntry?
 
     @Query("DELETE FROM $DATABASE_TABLE_NAME")
     fun clear()
