@@ -28,18 +28,5 @@
             android:onClick="@{()-> resultViewModel.onCalculateAgain()}"
             android:text="@string/calculate_again_button_text" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{()-> resultViewModel.cleanDB()}"
-            android:text="@string/clean_db_button_text" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{resultViewModel.entriesString}"
-            tools:text="data" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -18,11 +18,6 @@ class ResultViewModel(args: ResultFragmentArgs, application: Application) :
 
     private val database = ResultDatabase.getInstance(application)
 
-    private val entryList = database.dao.getAllEntries()
-    val entriesString = Transformations.map(entryList) {
-        it.toString()
-    }
-
     var currentEntry: LoCalEntry
 
     init {
@@ -44,18 +39,6 @@ class ResultViewModel(args: ResultFragmentArgs, application: Application) :
     private suspend fun insertInDB(newEntry: LoCalEntry) {
         withContext(Dispatchers.IO) {
             database.dao.insert(newEntry)
-        }
-    }
-
-    fun cleanDB() {
-        uiScope.launch {
-            clean()
-        }
-    }
-
-    private suspend fun clean() {
-        withContext(Dispatchers.IO) {
-            database.dao.clear()
         }
     }
 
