@@ -4,15 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="localEntry"
             type="com.example.lo_cal.data.models.LoCalEntry" />
+
+        <variable
+            name="clickListener"
+            type="com.example.lo_cal.ui.database.ItemClickListener" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:onClick="@{()->clickListener.onClick(localEntry)}"
         android:orientation="vertical">
 
         <TextView

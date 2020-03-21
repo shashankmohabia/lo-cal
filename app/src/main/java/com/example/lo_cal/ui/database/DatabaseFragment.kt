@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentDatabaseBinding
+import com.example.lo_cal.utils.extensions.toast
 
 class DatabaseFragment : Fragment() {
 
@@ -36,7 +37,10 @@ class DatabaseFragment : Fragment() {
         binding.databaseViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val adapter = DataListAdapter()
+        val adapter = DataListAdapter(ItemClickListener { id ->
+            toast(id.toString())
+        })
+
         binding.dataList.adapter = adapter
         binding.dataList.layoutManager = GridLayoutManager(activity, 3)
         //binding.dataList.layoutManager = GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false)
