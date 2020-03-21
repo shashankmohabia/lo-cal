@@ -3,30 +3,22 @@ package com.example.lo_cal.ui.database
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lo_cal.R
 import com.example.lo_cal.data.models.LoCalEntry
 
-class DataListAdapter : RecyclerView.Adapter<DataListAdapter.DataListViewHolder>() {
-
-    var data = listOf<LoCalEntry>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class DataListAdapter :
+    ListAdapter<LoCalEntry, DataListAdapter.DataListViewHolder>(DataListDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataListViewHolder {
         return DataListViewHolder.from(parent)
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
     override fun onBindViewHolder(holder: DataListViewHolder, position: Int) {
-        val dataItem = data[position]
+        val dataItem = getItem(position)
         holder.bind(dataItem)
     }
 
