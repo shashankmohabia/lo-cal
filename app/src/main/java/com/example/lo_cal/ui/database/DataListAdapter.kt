@@ -11,6 +11,11 @@ import com.example.lo_cal.data.models.LoCalEntry
 class DataListAdapter : RecyclerView.Adapter<DataListViewHolder>() {
 
     var data = listOf<LoCalEntry>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater
