@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentDatabaseBinding
+import com.example.lo_cal.utils.extensions.getTextShareIntent
 import com.example.lo_cal.utils.extensions.toast
 
 class DatabaseFragment : Fragment() {
@@ -37,8 +38,9 @@ class DatabaseFragment : Fragment() {
         binding.databaseViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val adapter = DataListAdapter(ItemClickListener { id ->
-            toast(id.toString())
+        val adapter = DataListAdapter(ItemClickListener {
+            toast(it.toString())
+            viewModel.onClickShareDetails(it)
         })
 
         binding.dataList.adapter = adapter
@@ -54,6 +56,13 @@ class DatabaseFragment : Fragment() {
         viewModel.entryList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+
+        viewModel.onClickShare.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                getTextShareIntent("text/plain", it.toString())
+                viewModel.onSharingComplete()
             }
         })
     }

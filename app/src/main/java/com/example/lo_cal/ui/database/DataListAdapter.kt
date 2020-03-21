@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lo_cal.data.models.LoCalEntry
 import com.example.lo_cal.databinding.DatalistItemGridViewBinding
 
-class DataListAdapter(val clickListener: ItemClickListener) :
+class DataListAdapter(private val clickListener: ItemClickListener) :
     ListAdapter<LoCalEntry, DataListViewHolder>(DataListDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataListViewHolder {
@@ -52,6 +52,6 @@ class DataListViewHolder private constructor(private val binding: DatalistItemGr
     }
 }
 
-class ItemClickListener(val clickListener: (itemId: Long) -> Unit) {
-    fun onClick(item: LoCalEntry) = clickListener(item.id)
+class ItemClickListener(val clickListener: (item: LoCalEntry) -> Unit) {
+    fun onClick(item: LoCalEntry) = clickListener(item)
 }
