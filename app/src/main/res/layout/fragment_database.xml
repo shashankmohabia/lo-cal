@@ -5,7 +5,6 @@
     tools:context=".ui.database.DatabaseFragment">
 
     <data>
-
         <variable
             name="databaseViewModel"
             type="com.example.lo_cal.ui.database.DatabaseViewModel" />
