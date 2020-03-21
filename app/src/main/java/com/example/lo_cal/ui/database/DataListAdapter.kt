@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lo_cal.data.models.LoCalEntry
-import com.example.lo_cal.databinding.DatalistItemListViewBinding
+import com.example.lo_cal.databinding.DatalistItemGridViewBinding
 
 class DataListAdapter :
     ListAdapter<LoCalEntry, DataListAdapter.DataListViewHolder>(DataListDiffCallback()) {
@@ -30,13 +30,13 @@ class DataListAdapter :
         }
     }
 
-    class DataListViewHolder private constructor(private val binding: DatalistItemListViewBinding) :
+    class DataListViewHolder private constructor(private val binding: DatalistItemGridViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(parent: ViewGroup): DataListViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = DatalistItemListViewBinding.inflate(layoutInflater)
+                val binding = DatalistItemGridViewBinding.inflate(layoutInflater)
                 return DataListViewHolder(binding)
             }
         }

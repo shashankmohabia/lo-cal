@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentDatabaseBinding
 
@@ -36,6 +38,8 @@ class DatabaseFragment : Fragment() {
 
         val adapter = DataListAdapter()
         binding.dataList.adapter = adapter
+        binding.dataList.layoutManager = GridLayoutManager(activity, 3)
+        //binding.dataList.layoutManager = GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false)
 
         setObservers(adapter)
 
