@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lo_cal.R
 import com.example.lo_cal.data.models.LoCalEntry
 
-class DataListAdapter : RecyclerView.Adapter<DataListViewHolder>() {
+class DataListAdapter : RecyclerView.Adapter<DataListAdapter.DataListViewHolder>() {
 
     var data = listOf<LoCalEntry>()
         set(value) {
@@ -17,13 +17,7 @@ class DataListAdapter : RecyclerView.Adapter<DataListViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataListViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater
-            .inflate(
-                R.layout.datalist_item,
-                parent, false
-            )
-        return DataListViewHolder(view)
+        return DataListViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int {
@@ -32,16 +26,35 @@ class DataListAdapter : RecyclerView.Adapter<DataListViewHolder>() {
 
     override fun onBindViewHolder(holder: DataListViewHolder, position: Int) {
         val dataItem = data[position]
-        holder.id.text = dataItem.id.toString()
-        holder.firstName.text = dataItem.firstName
-        holder.secondName.text = dataItem.secondName
-        holder.result.text = dataItem.result
+        holder.bind(dataItem)
     }
-}
 
-class DataListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val id: TextView = itemView.findViewById(R.id.item_id)
-    val firstName: TextView = itemView.findViewById(R.id.item_first_name)
-    val secondName: TextView = itemView.findViewById(R.id.item_second_name)
-    val result: TextView = itemView.findViewById(R.id.item_result)
+
+    class DataListViewHolder private constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+        companion object {
+            fun from(parent: ViewGroup): DataListViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater
+                    .inflate(
+                        R.layout.datalist_item,
+                        parent, false
+                    )
+                return DataListViewHolder(view)
+            }
+        }
+
+        private val id: TextView = itemView.findViewById(R.id.item_id)
+        private val firstName: TextView = itemView.findViewById(R.id.item_first_name)
+        private val secondName: TextView = itemView.findViewById(R.id.item_second_name)
+        private val result: TextView = itemView.findViewById(R.id.item_result)
+
+        fun bind(dataItem: LoCalEntry) {
+            id.text = dataItem.id.toString()
+            firstName.text = dataItem.firstName
+            secondName.text = dataItem.secondName
+            result.text = dataItem.result
+        }
+    }
 }
