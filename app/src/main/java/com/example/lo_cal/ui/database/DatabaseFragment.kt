@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.lo_cal.R
 import com.example.lo_cal.databinding.FragmentDatabaseBinding
-import kotlinx.android.synthetic.main.fragment_database.view.*
 
 class DatabaseFragment : Fragment() {
 
@@ -37,6 +37,16 @@ class DatabaseFragment : Fragment() {
         val adapter = DataListAdapter()
         binding.dataList.adapter = adapter
 
+        setObservers(adapter)
+
         return binding.root
+    }
+
+    private fun setObservers(adapter: DataListAdapter) {
+        viewModel.entryList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
     }
 }

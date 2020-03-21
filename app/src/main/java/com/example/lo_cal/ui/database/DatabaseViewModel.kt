@@ -12,10 +12,7 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
 
     private val database = ResultDatabase.getInstance(application)
 
-    private val entryList = database.dao.getAllEntries()
-    val entriesString = Transformations.map(entryList) {
-        it.toString()
-    }
+    val entryList = database.dao.getAllEntries()
 
     fun onClean() {
         uiScope.launch {
