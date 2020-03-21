@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lo_cal.R
 import com.example.lo_cal.data.models.LoCalEntry
@@ -29,6 +30,15 @@ class DataListAdapter : RecyclerView.Adapter<DataListAdapter.DataListViewHolder>
         holder.bind(dataItem)
     }
 
+    class DataListDiffCallback() : DiffUtil.ItemCallback<LoCalEntry>() {
+        override fun areItemsTheSame(oldItem: LoCalEntry, newItem: LoCalEntry): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: LoCalEntry, newItem: LoCalEntry): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     class DataListViewHolder private constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
