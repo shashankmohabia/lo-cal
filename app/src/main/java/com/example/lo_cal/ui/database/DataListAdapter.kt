@@ -42,10 +42,8 @@ class DataListAdapter :
         }
 
         fun bind(dataItem: LoCalEntry) {
-            binding.itemId.text = dataItem.id.toString()
-            binding.itemFirstName.text = dataItem.firstName
-            binding.itemSecondName.text = dataItem.secondName
-            binding.itemResult.text = dataItem.result
+            binding.localEntry = dataItem
+            binding.executePendingBindings()
         }
     }
 }
