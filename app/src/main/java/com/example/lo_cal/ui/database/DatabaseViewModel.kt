@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Transformations
 import com.example.lo_cal.data.ResultDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 
 class DatabaseViewModel(application: Application) : AndroidViewModel(application) {
     private var viewModelJob = Job()
@@ -17,6 +15,18 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
     private val entryList = database.dao.getAllEntries()
     val entriesString = Transformations.map(entryList) {
         it.toString()
+    }
+
+    fun onClean() {
+        uiScope.launch {
+            clean()
+        }
+    }
+
+    private suspend fun clean() {
+        withContext(Dispatchers.IO) {
+            database.dao.clear()
+        }
     }
 
     override fun onCleared() {
