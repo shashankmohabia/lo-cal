@@ -1,14 +1,12 @@
 package com.example.lo_cal.ui.database
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lo_cal.R
 import com.example.lo_cal.data.models.LoCalEntry
+import com.example.lo_cal.databinding.DatalistItemBinding
 
 class DataListAdapter :
     ListAdapter<LoCalEntry, DataListAdapter.DataListViewHolder>(DataListDiffCallback()) {
@@ -32,31 +30,22 @@ class DataListAdapter :
         }
     }
 
-    class DataListViewHolder private constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    class DataListViewHolder private constructor(private val binding: DatalistItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(parent: ViewGroup): DataListViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                    .inflate(
-                        R.layout.datalist_item,
-                        parent, false
-                    )
-                return DataListViewHolder(view)
+                val binding = DatalistItemBinding.inflate(layoutInflater)
+                return DataListViewHolder(binding)
             }
         }
 
-        private val id: TextView = itemView.findViewById(R.id.item_id)
-        private val firstName: TextView = itemView.findViewById(R.id.item_first_name)
-        private val secondName: TextView = itemView.findViewById(R.id.item_second_name)
-        private val result: TextView = itemView.findViewById(R.id.item_result)
-
         fun bind(dataItem: LoCalEntry) {
-            id.text = dataItem.id.toString()
-            firstName.text = dataItem.firstName
-            secondName.text = dataItem.secondName
-            result.text = dataItem.result
+            binding.itemId.text = dataItem.id.toString()
+            binding.itemFirstName.text = dataItem.firstName
+            binding.itemSecondName.text = dataItem.secondName
+            binding.itemResult.text = dataItem.result
         }
     }
 }
