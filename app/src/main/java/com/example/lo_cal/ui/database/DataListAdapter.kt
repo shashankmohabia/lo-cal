@@ -55,3 +55,15 @@ class DataListViewHolder private constructor(private val binding: DatalistItemGr
 class ItemClickListener(val clickListener: (item: LoCalEntry) -> Unit) {
     fun onClick(item: LoCalEntry) = clickListener(item)
 }
+
+sealed class DataItem {
+    abstract val id: Long
+
+    data class LoCalItem(val loCalEntry: LoCalEntry) : DataItem() {
+        override val id = loCalEntry.id
+    }
+
+    object Header : DataItem() {
+        override val id = Long.MIN_VALUE
+    }
+}

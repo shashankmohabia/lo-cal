@@ -17,4 +17,5 @@
     <string name="dbCount_option_text">DB count</string>
     <string name="clean_db_button_text">Clean DB</string>
     <string name="show_db_options_text">Show DB</string>
+    <string name="header_text">LoCal Data</string>
 </resources>
