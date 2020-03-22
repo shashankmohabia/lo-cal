@@ -1,10 +1,12 @@
 package com.example.lo_cal.ui.database
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lo_cal.R
 import com.example.lo_cal.data.models.LoCalEntry
 import com.example.lo_cal.databinding.DatalistItemGridViewBinding
 
@@ -28,6 +30,16 @@ class DataListDiffCallback() : DiffUtil.ItemCallback<LoCalEntry>() {
 
     override fun areContentsTheSame(oldItem: LoCalEntry, newItem: LoCalEntry): Boolean {
         return oldItem == newItem
+    }
+}
+
+class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    companion object {
+        fun from(parent: ViewGroup): HeaderViewHolder {
+            val layoutInflater = LayoutInflater.from(parent.context)
+            val view = layoutInflater.inflate(R.layout.recyclerview_header, parent, false)
+            return HeaderViewHolder(view)
+        }
     }
 }
 
