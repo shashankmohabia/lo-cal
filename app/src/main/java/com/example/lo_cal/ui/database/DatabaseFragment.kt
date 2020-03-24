@@ -55,7 +55,7 @@ class DatabaseFragment : Fragment() {
     private fun setObservers(adapter: DataListAdapter) {
         viewModel.entryList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
 

@@ -1,39 +1,67 @@
 package com.example.lo_cal.ui.database
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.lo_cal.R
 import com.example.lo_cal.data.models.LoCalEntry
 import com.example.lo_cal.databinding.DatalistItemGridViewBinding
 
-class DataListAdapter(private val clickListener: ItemClickListener) :
-    ListAdapter<LoCalEntry, DataListViewHolder>(DataListDiffCallback()) {
+private const val ITEM_VIEW_TYPE_HEADER = 0
+private const val ITEM_VIEW_TYPE_ITEM = 1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataListViewHolder {
-        return DataListViewHolder.from(parent)
+class DataListAdapter(private val clickListener: ItemClickListener) :
+    ListAdapter<DataItem, ViewHolder>(DataListDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return when (viewType) {
+            ITEM_VIEW_TYPE_HEADER -> HeaderViewHolder.from(parent)
+            ITEM_VIEW_TYPE_ITEM -> DataListViewHolder.from(parent)
+            else -> throw ClassCastException("Unknown viewType $viewType")
+        }
     }
 
-    override fun onBindViewHolder(holder: DataListViewHolder, position: Int) {
-        val dataItem = getItem(position)
-        holder.bind(dataItem, clickListener)
+    fun addHeaderAndSubmitList(list: List<LoCalEntry>?) {
+        val items = when (list) {
+            null -> listOf(DataItem.Header)
+            else -> listOf(DataItem.Header) + list.map { DataItem.LoCalItem(it) }
+        }
+        submitList(items)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        when (holder) {
+            is DataListViewHolder -> {
+                val dataItem = getItem(position) as DataItem.LoCalItem
+                holder.bind(dataItem.loCalEntry, clickListener)
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            is DataItem.Header -> ITEM_VIEW_TYPE_HEADER
+            is DataItem.LoCalItem -> ITEM_VIEW_TYPE_ITEM
+        }
     }
 }
 
-class DataListDiffCallback() : DiffUtil.ItemCallback<LoCalEntry>() {
-    override fun areItemsTheSame(oldItem: LoCalEntry, newItem: LoCalEntry): Boolean {
+class DataListDiffCallback() : DiffUtil.ItemCallback<DataItem>() {
+    override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: LoCalEntry, newItem: LoCalEntry): Boolean {
+    @SuppressLint("DiffUtilEquals")
+    override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
         return oldItem == newItem
     }
 }
 
-class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class HeaderViewHolder(view: View) : ViewHolder(view) {
     companion object {
         fun from(parent: ViewGroup): HeaderViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
@@ -44,7 +72,7 @@ class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 }
 
 class DataListViewHolder private constructor(private val binding: DatalistItemGridViewBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+    ViewHolder(binding.root) {
 
     companion object {
         fun from(parent: ViewGroup): DataListViewHolder {
