@@ -10,12 +10,18 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.lo_cal.R
 import com.example.lo_cal.data.models.LoCalEntry
 import com.example.lo_cal.databinding.DatalistItemGridViewBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val ITEM_VIEW_TYPE_HEADER = 0
 private const val ITEM_VIEW_TYPE_ITEM = 1
 
 class DataListAdapter(private val clickListener: ItemClickListener) :
     ListAdapter<DataItem, ViewHolder>(DataListDiffCallback()) {
+
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
@@ -26,11 +32,15 @@ class DataListAdapter(private val clickListener: ItemClickListener) :
     }
 
     fun addHeaderAndSubmitList(list: List<LoCalEntry>?) {
-        val items = when (list) {
-            null -> listOf(DataItem.Header)
-            else -> listOf(DataItem.Header) + list.map { DataItem.LoCalItem(it) }
+        adapterScope.launch {
+            val items = when (list) {
+                null -> listOf(DataItem.Header)
+                else -> listOf(DataItem.Header) + list.map { DataItem.LoCalItem(it) }
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
         }
-        submitList(items)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
