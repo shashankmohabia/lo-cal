@@ -4,5 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
+    android:textColor="@color/white"
     android:text="@string/header_text"
+    android:layout_margin="16dp"
+    android:background="@color/colorAccent"
     android:textAppearance="?android:attr/textAppearanceLarge" />

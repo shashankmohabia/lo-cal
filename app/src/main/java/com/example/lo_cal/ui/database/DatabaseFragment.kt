@@ -44,7 +44,17 @@ class DatabaseFragment : Fragment() {
         })
 
         binding.dataList.adapter = adapter
-        binding.dataList.layoutManager = GridLayoutManager(activity, 3)
+        binding.dataList.layoutManager = GridLayoutManager(activity, 3).apply {
+            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when (position) {
+                        0 -> 3
+                        else -> 1
+                    }
+                }
+
+            }
+        }
         //binding.dataList.layoutManager = GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false)
 
         setObservers(adapter)
