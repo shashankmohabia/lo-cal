@@ -25,12 +25,8 @@ class DatabaseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_database,
-            container,
-            false
-        )
+        binding = FragmentDatabaseBinding.inflate(inflater)
+
         val application = requireNotNull(this.activity).application
         viewModelFactory = DatabaseViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DatabaseViewModel::class.java)

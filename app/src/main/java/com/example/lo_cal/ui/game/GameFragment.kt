@@ -21,10 +21,7 @@ class GameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_game, container, false
-        )
+        binding = FragmentGameBinding.inflate(inflater)
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 

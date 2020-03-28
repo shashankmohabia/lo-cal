@@ -3,7 +3,6 @@ package com.example.lo_cal.ui.result
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -15,8 +14,9 @@ import com.example.lo_cal.utils.extensions.getTextShareIntent
 
 class ResultFragment : Fragment() {
 
-    private lateinit var binding: FragmentResultBinding
+
     private lateinit var args: ResultFragmentArgs
+    private lateinit var binding: FragmentResultBinding
     private lateinit var resultViewModel: ResultViewModel
     private lateinit var resultViewModelFactory: ResultViewModelFactory
 
@@ -25,12 +25,7 @@ class ResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         args = ResultFragmentArgs.fromBundle(arguments!!)
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_result,
-            container,
-            false
-        )
+        binding = FragmentResultBinding.inflate(inflater)
 
         val application = requireNotNull(this.activity).application
 
