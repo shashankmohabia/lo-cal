@@ -10,25 +10,9 @@
             type="com.example.lo_cal.ui.database.DatabaseViewModel" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/data_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/small"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{()->databaseViewModel.onClean()}"
-            android:text="@string/clean_db_button_text" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/data_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        android:layout_height="match_parent" />
 
 </layout>

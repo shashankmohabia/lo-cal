@@ -14,7 +14,6 @@ import com.example.lo_cal.utils.extensions.getTextShareIntent
 
 class ResultFragment : Fragment() {
 
-
     private lateinit var args: ResultFragmentArgs
     private lateinit var binding: FragmentResultBinding
     private lateinit var resultViewModel: ResultViewModel
@@ -58,7 +57,7 @@ class ResultFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.options_menu, menu)
+        inflater.inflate(R.menu.result_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
