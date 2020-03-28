@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.database.DatabaseFragment">
 
-    <data>
-        <variable
-            name="databaseViewModel"
-            type="com.example.lo_cal.ui.database.DatabaseViewModel" />
-    </data>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/data_list"
         android:layout_width="match_parent"
