@@ -14,18 +14,18 @@ import com.example.lo_cal.databinding.FragmentGameBinding
 class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentGameBinding
-    private lateinit var viewModel: GameViewModel
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(GameViewModel::class.java)
+    }
     private lateinit var result: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentGameBinding.inflate(inflater)
-
-        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
-
-        binding.gameViewModel = viewModel
+        binding = FragmentGameBinding.inflate(inflater).apply {
+            gameViewModel = viewModel
+        }
 
         setObservers()
 

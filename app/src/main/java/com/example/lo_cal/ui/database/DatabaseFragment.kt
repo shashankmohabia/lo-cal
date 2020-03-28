@@ -18,7 +18,7 @@ class DatabaseFragment : Fragment() {
     private lateinit var binding: FragmentDatabaseBinding
     private lateinit var viewModel: DatabaseViewModel
     private lateinit var viewModelFactory: DatabaseViewModelFactory
-    private lateinit var adapter: DataListAdapter
+    private lateinit var recyclerViewAdapter: DataListAdapter
     private val application by lazy {
         requireNotNull(this.activity).application
     }
@@ -27,10 +27,11 @@ class DatabaseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDatabaseBinding.inflate(inflater)
+        binding = FragmentDatabaseBinding.inflate(inflater).apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
 
         initializeViewModel()
-        setUpBinding()
         setUpRecyclerView()
         setObservers()
 
@@ -44,24 +45,21 @@ class DatabaseFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(DatabaseViewModel::class.java)
     }
 
-    private fun setUpBinding() {
-        binding.databaseViewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-    }
-
     private fun setUpRecyclerView() {
-        adapter = DataListAdapter(ItemClickListener {
+        recyclerViewAdapter = DataListAdapter(ItemClickListener {
             toast(it.toString())
             viewModel.onClickShareDetails(it)
         })
 
-        binding.dataList.adapter = adapter
-        binding.dataList.layoutManager = GridLayoutManager(activity, 3).apply {
-            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    return when (position) {
-                        0 -> 3
-                        else -> 1
+        binding.dataList.apply {
+            adapter = recyclerViewAdapter
+            layoutManager = GridLayoutManager(activity, 3).apply {
+                spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return when (position) {
+                            0 -> 3
+                            else -> 1
+                        }
                     }
                 }
             }
@@ -73,7 +71,7 @@ class DatabaseFragment : Fragment() {
     private fun setObservers() {
         viewModel.entryList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.addHeaderAndSubmitList(it)
+                recyclerViewAdapter.addHeaderAndSubmitList(it)
             }
         })
 

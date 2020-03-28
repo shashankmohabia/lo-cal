@@ -14,39 +14,50 @@ import com.example.lo_cal.utils.extensions.getTextShareIntent
 
 class ResultFragment : Fragment() {
 
-    private lateinit var args: ResultFragmentArgs
     private lateinit var binding: FragmentResultBinding
-    private lateinit var resultViewModel: ResultViewModel
-    private lateinit var resultViewModelFactory: ResultViewModelFactory
+    private lateinit var viewModel: ResultViewModel
+    private lateinit var viewModelFactory: ResultViewModelFactory
+
+    private val application by lazy {
+        requireNotNull(this.activity).application
+    }
+
+    private val args: ResultFragmentArgs by lazy {
+        ResultFragmentArgs.fromBundle(arguments!!)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        args = ResultFragmentArgs.fromBundle(arguments!!)
         binding = FragmentResultBinding.inflate(inflater)
 
-        val application = requireNotNull(this.activity).application
-
-        resultViewModelFactory = ResultViewModelFactory(args, application)
-
-        resultViewModel =
-            ViewModelProvider(this, resultViewModelFactory).get(ResultViewModel::class.java)
-
-        binding.resultViewModel = resultViewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-
+        initializeViewModel()
+        initializeBindingVariables()
         setHasOptionsMenu(true)
         setObservers()
 
         return binding.root
     }
 
+    private fun initializeViewModel() {
+        viewModelFactory = ResultViewModelFactory(args, application)
+        viewModel =
+            ViewModelProvider(this, viewModelFactory).get(ResultViewModel::class.java)
+    }
+
+    private fun initializeBindingVariables() {
+        binding.apply {
+            resultViewModel = viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+    }
+
     private fun setObservers() {
-        resultViewModel.calculateAgain.observe(viewLifecycleOwner, Observer {
+        viewModel.calculateAgain.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 navigateToGame()
-                resultViewModel.onCalculateAgainComplete()
+                viewModel.onCalculateAgainComplete()
             }
         })
     }
@@ -62,7 +73,7 @@ class ResultFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.shareResult) {
-            getTextShareIntent("text/plain", resultViewModel.currentEntry.result)
+            getTextShareIntent("text/plain", viewModel.currentEntry.result)
             return true
         }
         return NavigationUI.onNavDestinationSelected(item, view!!.findNavController())
