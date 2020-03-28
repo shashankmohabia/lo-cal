@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:id="@+id/aboutFragment"
-        android:title="@string/about_us_option_text" />
     <item
         android:id="@+id/shareResult"
         android:title="@string/share_result_option_text" />
-    <item
-        android:id="@+id/databaseFragment"
-        android:title="@string/show_db_options_text"/>
 </menu>
