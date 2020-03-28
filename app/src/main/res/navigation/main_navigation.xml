@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.example.lo_cal.ui.game.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" >
+        android:label="@string/game_fragment_label"
+        tools:layout="@layout/fragment_game">
         <action
             android:id="@+id/action_gameFragment_to_resultFragment"
             app:destination="@id/resultFragment"
@@ -19,8 +19,8 @@
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.lo_cal.ui.result.ResultFragment"
-        android:label="fragment_result"
-        tools:layout="@layout/fragment_result" >
+        android:label="@string/result_fragment_label"
+        tools:layout="@layout/fragment_result">
         <argument
             android:name="firstPersonName"
             app:argType="string" />
@@ -29,8 +29,8 @@
             app:argType="string" />
         <argument
             android:name="result"
-            app:argType="string"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="string" />
         <action
             android:id="@+id/action_resultFragment_to_gameFragment"
             app:destination="@id/gameFragment"
@@ -40,11 +40,11 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.lo_cal.ui.about.AboutFragment"
-        android:label="fragment_about"
+        android:label="@string/about_us_fragment_label"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/databaseFragment"
         android:name="com.example.lo_cal.ui.database.DatabaseFragment"
-        android:label="fragment_database"
+        android:label="@string/database_fragment_label"
         tools:layout="@layout/fragment_database" />
 </navigation>

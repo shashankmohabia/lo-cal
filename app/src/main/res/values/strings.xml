@@ -18,4 +18,8 @@
     <string name="clean_db_button_text">Clean DB</string>
     <string name="show_db_options_text">Show DB</string>
     <string name="header_text">LoCal Data</string>
+    <string name="game_fragment_label">Love Calculator</string>
+    <string name="result_fragment_label">Result</string>
+    <string name="database_fragment_label">Database</string>
+    <string name="about_us_fragment_label">About Us</string>
 </resources>
