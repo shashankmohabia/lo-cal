@@ -6,6 +6,7 @@
         android:icon="?attr/actionModePasteDrawable"
         android:title="@string/about_us_option_text" />
     <item
-        android:id="@+id/rulesFragment"
-        android:title="@string/rules_option_text" />
+        android:id="@+id/databaseFragment"
+        android:icon="@drawable/database_icon"
+        android:title="@string/show_db_options_text" />
 </menu>
