@@ -14,24 +14,21 @@ abstract class ResultDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: ResultDatabase? = null
+        private lateinit var INSTANCE: ResultDatabase
 
         fun getInstance(context: Context): ResultDatabase {
             synchronized(this) {
-                var instance = INSTANCE
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
+                if (!::INSTANCE.isInitialized) {
+                    INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         ResultDatabase::class.java,
                         DATABASE_NAME
                     )
                         .fallbackToDestructiveMigration()
                         .build()
-
-                    INSTANCE = instance
                 }
-                return instance
             }
+            return INSTANCE
         }
     }
 }
